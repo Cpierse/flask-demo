@@ -1,15 +1,28 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Hello, World!</title>
+    <head>
+        <meta charset="utf-8">
+		<title>Stock ticker milestone</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<div>
-  			<h1>Hello, World!</h1>
+        <form method="POST"  action="{{ url_for('index') }}">
+        	<div>
+        		<h2>Enter a stock ticker:</h2>
+             <input type="text" name="ticker" placeholder="GOOG"/> 
+             <h4>Choose which data to display:</h4>
+             {% for thing in  ['opening', 'high', 'low', 'closing', 'adj_opening', 
+                               'adj_high', 'adj_low', 'adj_closing'] %}
+                <div>
+                    <input type="checkbox" id={{thing}} name={{thing}} value={{thing}}>
+                    <label for={{thing}}>{{thing.capitalize().replace('Adj_','Adjusted ') }} price</label>
+                </div>
+             {% endfor %}
+             
 		</div>
+        <input type="submit" value="Submit!"/>
+        </form>
 	</body>
 </html>
